@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "sass": "sass --watch src/scss/main.scss src/css/main.css"
+  "test": "echo \"No tests configured\"",
+  "sass": "sass --watch src/scss/main.scss src/css/main.css",
+  "build": "sass src/scss/main.scss docs/css/main.css --style=compressed"
 },
   "keywords": [],
   "author": "",
