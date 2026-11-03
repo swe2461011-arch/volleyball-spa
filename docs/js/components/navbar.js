@@ -1,3 +1,4 @@
+import { t, toggleLanguage } from "../i18n/i18n.js";
 
 export function renderNavbar() {
   return `
@@ -9,7 +10,7 @@ export function renderNavbar() {
               <figure class="image">
                 <img src="./img/icon/icon.png" alt="VolleyShop logo" />
               </figure>
-              <p><span>Volley</span>Shop</p>
+              <p>${t("nav.brand")}</p>
             </a>
 
             <a class="navbar-burger" role="button" aria-expanded="false" data-target="topNavbar">
@@ -22,44 +23,17 @@ export function renderNavbar() {
 
           <div class="navbar-menu has-text-weight-semibold has-text-centered" id="topNavbar">
             <div class="navbar-start app-top-navbar-right">
-              <a class="navbar-item" href="#/overview">
-                <span class="icon has-text-warning">
-                  <i class="fas fa-house"></i>
-                </span>
-                <span>Нүүр</span>
-              </a>
-
-              <a class="navbar-item" href="#/search">
-                <span class="icon has-text-primary">
-                  <i class="fas fa-volleyball"></i>
-                </span>
-                <span>Бүтээгдэхүүн</span>
-              </a>
-
-              <a class="navbar-item" href="#/calculation">
-                <span class="icon has-text-link">
-                  <i class="fas fa-calculator"></i>
-                </span>
-                <span>Төсөв</span>
-              </a>
-
-              <a class="navbar-item" href="#/guides">
-                <span class="icon has-text-info">
-                  <i class="fas fa-book"></i>
-                </span>
-                <span>Зөвлөгөө</span>
-              </a>
-
-              <a class="navbar-item" href="#/contact">
-                <span class="icon has-text-danger">
-                  <i class="fas fa-address-card"></i>
-                </span>
-                <span>Холбоо барих</span>
-              </a>
+              <a class="navbar-item" href="#/overview">${t("nav.overview")}</a>
+              <a class="navbar-item" href="#/search">${t("nav.search")}</a>
+              <a class="navbar-item" href="#/calculation">${t("nav.calculation")}</a>
+              <a class="navbar-item" href="#/guides">${t("nav.guides")}</a>
+              <a class="navbar-item" href="#/contact">${t("nav.contact")}</a>
             </div>
 
             <div class="navbar-end">
-              <a class="navbar-item" href="#">MN</a>
+              <a class="navbar-item" href="#" id="langToggle">
+                ${t("nav.language")}
+              </a>
             </div>
           </div>
         </div>
@@ -70,15 +44,41 @@ export function renderNavbar() {
 
 export function initNavbar() {
   const burger = document.querySelector(".navbar-burger");
-  const menu = document.getElementById("topNavbar");
+  const languageToggle = document.getElementById("langToggle");
 
-  if (!burger || !menu) return;
+  if (!burger) return;
+
+  const targetId = burger.dataset.target;
+  const menu = document.getElementById(targetId);
 
   burger.addEventListener("click", () => {
     burger.classList.toggle("is-active");
-    menu.classList.toggle("is-active");
+    menu?.classList.toggle("is-active");
 
-    const isExpanded = burger.classList.contains("is-active");
-    burger.setAttribute("aria-expanded", String(isExpanded));
+    burger.setAttribute(
+      "aria-expanded",
+      String(burger.classList.contains("is-active"))
+    );
   });
+
+  menu?.querySelectorAll(".navbar-item[href^='#/']").forEach((link) => {
+    link.addEventListener("click", () => {
+      burger.classList.remove("is-active");
+      menu.classList.remove("is-active");
+      burger.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  languageToggle?.addEventListener("click", (event) => {
+    event.preventDefault();
+    toggleLanguage();
+    window.location.reload();
+  });
+}
+
+export function mountNavbar(root) {
+  if (!root) return;
+
+  root.innerHTML = renderNavbar();
+  initNavbar();
 }

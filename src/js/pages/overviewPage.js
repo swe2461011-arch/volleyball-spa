@@ -1,4 +1,4 @@
-
+import { t } from "../i18n/i18n.js";
 import { renderPageLayout } from "../layouts/pageLayout.js";
 
 export function renderOverviewPage() {
@@ -6,19 +6,17 @@ export function renderOverviewPage() {
 
   const content = `
     <div class="box">
-      <h2 class="title is-4">VolleyShop-д тавтай морил!</h2>
-      <p>
-        Волейболын хувцас, гутал болон спортын хэрэгслүүдийг
-        нэг дороос сонгон танилцаарай.
-      </p>
+      <h2 class="title is-4">${t("overview.welcome")}</h2>
+      <p>${t("overview.description")}</p>
+
       <a href="#/search" class="button is-primary mt-4">
-        Бүтээгдэхүүн үзэх
+        ${t("nav.search")}
       </a>
     </div>
   `;
 
   app.innerHTML = renderPageLayout({
-    title: "Нүүр хуудас",
+    title: t("overview.title"),
     content: content,
   });
 }
