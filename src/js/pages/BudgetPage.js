@@ -1,5 +1,5 @@
 
-import { renderPageLayout } from "../pageLayout.js";
+import { renderPageLayout } from "../layouts/pageLayout.js";
 
 export function renderBudgetPage() {
   const app = document.getElementById("app");

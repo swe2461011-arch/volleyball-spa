@@ -1,5 +1,5 @@
 
-import { renderPageLayout } from "../pageLayout.js";
+import { renderPageLayout } from "../layouts/pageLayout.js";
 
 export function renderContactPage() {
   const app = document.getElementById("app");
@@ -12,7 +12,7 @@ export function renderContactPage() {
         <ul>
           <li>Дэлгүүр: VolleyShop</li>
           <li>Үйлчилгээ: Волейболын хувцас, хэрэгсэл</li>
-          <li>И-мэйл: volleyshop@gmail.com</li>
+          <li>И-мэйл: Холбоо барих хаягаа энд оруулна уу.</li>
         </ul>
       </div>
     </div>

@@ -1,17 +1,25 @@
 
-import { renderPageLayout } from "../pageLayout.js";
+import { renderPageLayout } from "../layouts/pageLayout.js";
 
 export function renderSearchPage() {
   const app = document.getElementById("app");
 
   const content = `
     <div class="box">
-      <p>Волейболын бөмбөг, өмсгөл, гутал болон хамгаалалтын хэрэгслүүдтэй танилцаарай.</p>
+      <h2 class="title is-4">Бүтээгдэхүүний төрөл</h2>
+      <div class="content">
+        <ul>
+          <li>Волейболын бөмбөг</li>
+          <li>Волейболын өмсгөл</li>
+          <li>Волейболын гутал</li>
+          <li>Өвдөгний хамгаалалт</li>
+        </ul>
+      </div>
     </div>
   `;
 
   app.innerHTML = renderPageLayout({
-    title: "Бүтээгдэхүүн хайх",
+    title: "Бүтээгдэхүүн",
     content: content,
   });
 }

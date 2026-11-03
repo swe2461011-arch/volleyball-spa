@@ -1,21 +1,24 @@
+
 @use "sass:color";
 
-// variables
+// Өнгөний хувьсагч
 $primaryColor: #2bac73;
 $primaryColorDark: color.scale($primaryColor, $lightness: -15%);
 
 $secondaryColor: #ff914d;
 $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
 
+// Bulma санг импортлох
 @import "../../node_modules/bulma/bulma";
 
-// custom styles
+// Үндсэн өнгө
 :root {
   --bulma-primary-h: 151deg;
   --bulma-primary-s: 65%;
   --bulma-primary-l: 42%;
 }
 
+// Үндсэн товчны загвар
 .button.is-primary {
   background-color: $primaryColor;
   border-color: $primaryColor;
@@ -29,6 +32,7 @@ $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
   color: white;
 }
 
+// Хоёрдогч товчны загвар
 .button.is-secondary {
   background-color: $secondaryColor;
   border-color: $secondaryColor;
@@ -40,4 +44,61 @@ $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
   background-color: $secondaryColorDark;
   border-color: $secondaryColorDark;
   color: white;
+}
+
+// Дээд навигацийн цэс
+.navbar-brand a {
+  p {
+    color: $primaryColor;
+    font-size: 1.2rem;
+  }
+
+  span {
+    color: $secondaryColor;
+  }
+}
+
+.navbar-end a {
+  color: $secondaryColor;
+}
+
+// Дээд цэсийг дэлгэцийн дээд хэсэгт тогтоох
+.app-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #f5f5f5;
+}
+
+// Цэсний сүүдэр
+.app-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+// Логоны хэмжээ
+.navbar-brand .image img {
+  max-width: 64px;
+  height: auto;
+}
+
+// Цэсний зураг болон текстийн байрлал
+.navbar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Цэсийг баруун тал руу зэрэгцүүлэх
+.app-top-navbar-right {
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+// Лого дээр дарах болон хулгана аваачих үеийн загвар
+.navbar-brand .app-logo:hover,
+.navbar-brand .app-logo:focus,
+.navbar-brand .app-logo:active {
+  background-color: transparent;
+  color: inherit;
+  box-shadow: none;
 }
