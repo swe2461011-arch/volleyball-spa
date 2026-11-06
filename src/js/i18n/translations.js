@@ -3,7 +3,7 @@ export const translations = {
     nav: {
       overview: "Нүүр",
       search: "Бүтээгдэхүүн",
-      calculation: "Төсөв",
+      budget: "Төсөв",
       guides: "Зөвлөгөө",
       contact: "Холбоо барих",
       language: "EN",
@@ -13,6 +13,11 @@ export const translations = {
       title: "Нүүр хуудас",
       welcome: "VolleyShop-д тавтай морил!",
       description: "Волейболын хувцас, гутал болон спортын хэрэгслүүдийг нэг дороос сонгон танилцаарай.",
+      features: {
+        products: { title: "Бүтээгдэхүүн", text: "Бөмбөг, өмсгөл, гутал, хамгаалалтын хэрэгслийг үзэж сонгоно." },
+        budget: { title: "Төсөв тооцоолох", text: "Багийн хэрэгслийн төсвөө урьдчилан тооцоолно." },
+        guides: { title: "Зөвлөгөө", text: "Хэрэгсэл сонгох, арчлах талаар зөвлөмж унших." },
+      },
     },
   },
 
@@ -20,7 +25,7 @@ export const translations = {
     nav: {
       overview: "Home",
       search: "Products",
-      calculation: "Budget",
+      budget: "Budget",
       guides: "Guides",
       contact: "Contact",
       language: "MN",
@@ -30,6 +35,11 @@ export const translations = {
       title: "Home page",
       welcome: "Welcome to VolleyShop!",
       description: "Explore volleyball clothing, shoes, and sports equipment in one place.",
+      features: {
+        products: { title: "Products", text: "Browse balls, clothing, shoes and protective gear." },
+        budget: { title: "Budget", text: "Estimate the equipment budget of your team in advance." },
+        guides: { title: "Guides", text: "Read tips on choosing and caring for your gear." },
+      },
     },
   },
 };

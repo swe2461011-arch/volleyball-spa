@@ -102,3 +102,107 @@ $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
   color: inherit;
   box-shadow: none;
 }
+
+// ===== Загварыг сайжруулсан хэсэг (өнгөлөг) =====
+$volleyYellow: #ffb300;
+$volleyRed: #e53935;
+
+body {
+  background: #eef4fb;
+}
+
+// Navbar: доор нь өнгөт зураас
+.app-shadow {
+  border-bottom: 4px solid $volleyYellow;
+}
+
+// Хуудасны гарчиг: доор нь өнгөт зураас
+.txt-h {
+  margin-bottom: 2rem;
+  color: #0d3b66;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 5px;
+    margin: 0.6rem auto 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg, $primaryColor, $volleyYellow, $volleyRed);
+  }
+}
+
+// Хайрцаг: зүүн талд өнгөт зураастай
+.box {
+  border-radius: 14px;
+  border-left: 6px solid $primaryColor;
+  box-shadow: 0 4px 14px rgba(30, 60, 120, 0.1);
+}
+
+.button {
+  border-radius: 999px;
+}
+
+// Нүүр хуудасны том баннер
+.app-hero {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0d47a1, $primaryColor 50%, $volleyYellow);
+  box-shadow: 0 10px 30px rgba(13, 71, 161, 0.3);
+
+  .title,
+  .subtitle {
+    color: #fff;
+  }
+
+  // Bulma-ийн .title + .subtitle сөрөг зайг арилгаж, хоёрыг салгана
+  .title + .subtitle {
+    margin-top: 0.75rem;
+  }
+
+  .button {
+    color: #0d47a1;
+    font-weight: 700;
+  }
+}
+
+// Нүүр хуудасны 3 карт: тус бүр өөр өнгөтэй
+.app-feature {
+  display: block;
+  height: 100%;
+  text-align: center;
+  border-left: 0;
+  border-top: 6px solid $primaryColor;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(30, 60, 120, 0.2);
+  }
+}
+
+.app-feature-primary {
+  border-top-color: $primaryColor;
+}
+
+.app-feature-warning {
+  border-top-color: $volleyYellow;
+}
+
+.app-feature-danger {
+  border-top-color: $volleyRed;
+}
+
+// Navbar: лого дүрс, идэвхтэй цэс
+.app-logo-icon {
+  color: $volleyYellow;
+}
+
+.navbar-menu .navbar-item.is-active {
+  color: $primaryColor;
+  background: #e3f0fd;
+}
