@@ -1,0 +1,70 @@
+[
+  {
+    "id": "ball-001",
+    "category": "ball",
+    "brand": "Mikasa",
+    "name": {
+      "en": "Mikasa V200W Official Ball",
+      "mn": "Mikasa V200W албан ёсны бөмбөг"
+    },
+    "price": 89000,
+    "size": "5",
+    "level": "professional",
+    "description": {
+      "en": "FIVB official match ball used in international competitions.",
+      "mn": "Олон улсын тэмцээнд ашиглагддаг FIVB албан ёсны бөмбөг."
+    },
+    "inStock": true
+  },
+  {
+    "id": "jersey-001",
+    "category": "clothing",
+    "brand": "Asics",
+    "name": {
+      "en": "Asics Team Jersey",
+      "mn": "Asics багийн өмсгөл"
+    },
+    "price": 45000,
+    "size": "S-XXL",
+    "level": "club",
+    "description": {
+      "en": "Lightweight breathable team jersey.",
+      "mn": "Хөнгөн, амьсгалдаг багийн өмсгөл."
+    },
+    "inStock": true
+  },
+  {
+    "id": "shoe-001",
+    "category": "shoes",
+    "brand": "Asics",
+    "name": {
+      "en": "Asics Gel-Rocket 11",
+      "mn": "Asics Gel-Rocket 11"
+    },
+    "price": 185000,
+    "size": "38-46",
+    "level": "club",
+    "description": {
+      "en": "Indoor court shoes with Gel cushioning.",
+      "mn": "Gel зөөлөвчтэй дотор талбайн гутал."
+    },
+    "inStock": true
+  },
+  {
+    "id": "knee-001",
+    "category": "protection",
+    "brand": "Asics",
+    "name": {
+      "en": "Asics Knee Pads",
+      "mn": "Asics өвдөгний хамгаалалт"
+    },
+    "price": 28000,
+    "size": "S-L",
+    "level": "club",
+    "description": {
+      "en": "Comfortable knee pads for dives.",
+      "mn": "Шумбах үед тохиромжтой өвдөгний хамгаалалт."
+    },
+    "inStock": true
+  }
+]
