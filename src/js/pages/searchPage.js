@@ -6,16 +6,15 @@ import { renderSearchSettingsSidebar } from "../components/searchSettingsSidebar
 import { renderCategoryListSidebar } from "../components/searchCategoryListSidebar.js";
 import { renderProductCards } from "../components/productTables.js";
 import { bindProductSearchEvents } from "../fn/productSearchEvents.js";
-import { t } from "../i18n/i18n.js";
 import { renderImageModal, bindImageModalEvents } from "../components/imageModal.js";
+import { t } from "../i18n/i18n.js";
 
 export async function renderSearchPage() {
   const app = document.getElementById("app");
 
-  // Ачаалж байна
   app.innerHTML = renderPageLayout({
-    title: t("search.title") || "Бүтээгдэхүүн хайх",
-    content: renderNotification("Өгөгдөл ачаалж байна...", "info"),
+    title: t("search.title"),
+    content: renderNotification(t("search.loading"), "info"),
   });
 
   try {
@@ -23,7 +22,7 @@ export async function renderSearchPage() {
     const categories = [...new Set(products.map((p) => p.category))];
 
     app.innerHTML = renderPageLayout({
-      title: t("search.title") || "Бүтээгдэхүүн хайх",
+      title: t("search.title"),
       content: `
         <div class="app-shell">
           <aside class="app-sidebar">
@@ -31,14 +30,17 @@ export async function renderSearchPage() {
             ${renderSearchSettingsSidebar()}
             ${renderCategoryListSidebar(categories)}
           </aside>
-
           <div class="app-main">
             <div class="mb-3">
               <span class="tag is-primary is-medium" id="resultCount">
-                Илэрц: ${products.length}
+                ${t("search.results")}: ${products.length}
               </span>
             </div>
-                   </div>
+            <div id="productResults">
+              ${renderProductCards(products)}
+            </div>
+          </div>
+        </div>
         ${renderImageModal()}
       `,
     });
@@ -48,28 +50,8 @@ export async function renderSearchPage() {
   } catch (error) {
     console.error(error);
     app.innerHTML = renderPageLayout({
-      title: t("search.title") || "Бүтээгдэхүүн хайх",
-      content: `
-  <div class="app-shell">
-    <aside class="app-sidebar">
-      ${renderSearchSidebar()}
-      ${renderSearchSettingsSidebar()}
-      ${renderCategoryListSidebar(categories)}
-    </aside>
-
-    <div class="app-main">
-      <div class="mb-3">
-        <span class="tag is-primary is-medium" id="resultCount">
-          Илэрц: ${products.length}
-        </span>
-      </div>
-      <div id="productResults">
-        ${renderProductCards(products)}
-      </div>
-    </div>
-  </div>
-  ${renderImageModal()}
-`,
+      title: t("search.title"),
+      content: renderNotification(t("search.failed"), "danger"),
     });
   }
 }

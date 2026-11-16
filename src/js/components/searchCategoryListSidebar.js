@@ -1,19 +1,12 @@
-export function renderCategoryListSidebar(categories = []) {
-  if (!categories.length) {
-    return `
-      <div class="box">
-        <h3 class="title is-6">Ангилал</h3>
-        <p class="is-size-7 has-text-grey">Ангилал олдсонгүй.</p>
-      </div>
-    `;
-  }
+import { t } from "../i18n/i18n.js";
 
+export function renderCategoryListSidebar(categories = []) {
   const items = categories
     .map(
       (cat) => `
       <li>
         <a class="category-item" data-category="${cat}">
-          ${categoryLabel(cat)}
+          ${t("categories." + cat)}
         </a>
       </li>
     `,
@@ -22,12 +15,12 @@ export function renderCategoryListSidebar(categories = []) {
 
   return `
     <div class="box">
-      <h3 class="title is-6">Ангилал</h3>
+      <h3 class="title is-6">${t("search.categories")}</h3>
       <aside class="menu">
         <ul class="menu-list">
           <li>
             <a class="category-item is-active" data-category="all">
-              Бүх ангилал
+              ${t("search.allCategories")}
             </a>
           </li>
           ${items}
@@ -35,15 +28,4 @@ export function renderCategoryListSidebar(categories = []) {
       </aside>
     </div>
   `;
-}
-
-function categoryLabel(category) {
-  const map = {
-    ball: "Бөмбөг",
-    clothing: "Хувцас",
-    shoes: "Гутал",
-    protection: "Хамгаалалт",
-    equipment: "Бусад хэрэгсэл",
-  };
-  return map[category] || category;
 }
