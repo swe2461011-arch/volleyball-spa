@@ -1,13 +1,16 @@
 {
   "name": "volleyball-spa",
-  "version": "3.0.0",
-  "description": "VolleyShop - complete volleyball gear catalog SPA",
-  "scripts": {
-    "test": "echo \"No tests configured\"",
-    "sass": "sass --watch src/scss/main.scss src/css/main.css",
-    "build": "sass src/scss/main.scss docs/css/main.css --style=compressed",
-    "images": "node src/tools/generate-images-json.mjs"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+  "test": "echo \"No tests configured\"",
+  "sass": "sass --watch src/scss/main.scss src/css/main.css",
+  "build": "sass src/scss/main.scss docs/css/main.css --style=compressed",
+  "images": "node src/tools/generate-images-json.mjs"
+},
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

@@ -1,0 +1,37 @@
+// Sidebar + main content layout
+.app-shell {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  min-height: 60vh;
+}
+
+.app-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+}
+
+// Гар утас дээр sidebar доор stack болно
+@media screen and (max-width: 768px) {
+  .app-shell {
+    display: block;
+    height: auto;
+  }
+
+  .app-sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .app-main {
+    width: 100%;
+  }
+}

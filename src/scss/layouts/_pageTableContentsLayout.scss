@@ -1,0 +1,45 @@
+// Хүснэгтийн контейнер
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+// Хүснэгтийн ерөнхий загвар
+.table {
+  background-color: #fff;
+  border-radius: 8px;
+
+  th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+
+  // Үнийн багана
+  .price-cell {
+    font-weight: 600;
+    color: $primaryColor;
+    white-space: nowrap;
+  }
+
+  // Бэлэн / дууссан тэмдэг
+  .stock-ok {
+    color: #257942;
+  }
+
+  .stock-out {
+    color: #cc0f35;
+  }
+}
+
+// Гар утас дээр хүснэгт гүйлгэх боломжтой болгоно
+@media screen and (max-width: 768px) {
+  .table-container {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+}

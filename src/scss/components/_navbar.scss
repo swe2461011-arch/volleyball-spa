@@ -1,0 +1,38 @@
+// Дээд цэсийг дэлгэцийн дээд хэсэгт тогтоох
+.app-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #f5f5f5;
+}
+
+// Цэсний сүүдэр
+.app-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+// Лого
+.app-logo {
+  p {
+    color: $primaryColor;
+    font-size: 1.2rem;
+  }
+}
+
+.app-logo-icon {
+  color: $secondaryColor;
+}
+
+// Идэвхтэй цэсний item
+.navbar-menu .navbar-item.is-active {
+  color: $primaryColor;
+  background: rgba($primaryColor, 0.08);
+  font-weight: 600;
+}
+
+// Burger цэс
+.navbar-burger {
+  &.is-active {
+    background-color: transparent;
+  }
+}

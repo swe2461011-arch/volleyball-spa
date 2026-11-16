@@ -1,0 +1,34 @@
+// Sidebar доторх ангиллын жагсаалт
+.menu-list {
+  a.category-item {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    color: #363636;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background-color: #f0f0f0;
+      color: $primaryColor;
+    }
+
+    &.is-active {
+      background-color: $primaryColor;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}
+
+// Sidebar box доторх гарчиг
+.app-sidebar {
+  .box {
+    margin-bottom: 1rem;
+
+    .title {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+  }
+}
