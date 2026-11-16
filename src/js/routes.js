@@ -1,4 +1,3 @@
-
 import { renderOverviewPage } from "./pages/overviewPage.js";
 import { renderSearchPage } from "./pages/searchPage.js";
 import { renderBudgetPage } from "./pages/BudgetPage.js";
@@ -9,6 +8,7 @@ import { renderNotFoundPage } from "./pages/notFoundPage.js";
 export const routes = {
   "#/overview": renderOverviewPage,
   "#/search": renderSearchPage,
+  "#/budget": renderBudgetPage,
   "#/calculation": renderBudgetPage,
   "#/guides": renderGuidesPage,
   "#/contact": renderContactPage,

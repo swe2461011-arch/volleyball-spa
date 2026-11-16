@@ -30,6 +30,7 @@ export function toggleLanguage() {
   setLanguage(next);
   return next;
 }
+
 export function getLocalizedValue(obj) {
   if (!obj || typeof obj !== "object") return "";
   const lang = getCurrentLanguage();

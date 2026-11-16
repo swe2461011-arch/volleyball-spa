@@ -1,15 +1,13 @@
 {
   "name": "volleyball-spa",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "2.9.2",
+  "description": "VolleyShop - volleyball gear intro catalog",
   "scripts": {
-  "test": "echo \"No tests configured\"",
-  "sass": "sass --watch src/scss/main.scss src/css/main.css",
-  "build": "sass src/scss/main.scss docs/css/main.css --style=compressed"
-},
-  "keywords": [],
-  "author": "",
+    "test": "echo \"No tests configured\"",
+    "sass": "sass --watch src/scss/main.scss src/css/main.css",
+    "build": "sass src/scss/main.scss docs/css/main.css --style=compressed",
+    "images": "node src/tools/generate-images-json.mjs"
+  },
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

@@ -2,7 +2,7 @@ import { CONFIG } from "../config.js";
 
 export function formatPrice(value) {
   if (value == null || Number.isNaN(Number(value))) return "-";
-  return `${Number(value).toLocaleString("mn-MN")} ${CONFIG.currency}`;
+  return Number(value).toLocaleString("mn-MN") + " " + CONFIG.currency;
 }
 
 export function safeValue(value, fallback = "-") {
