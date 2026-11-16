@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("volleyshop-theme");
+          if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="VolleyShop - Волейболын оригинал пүүз, бөмбөг, хамгаалалтын хэрэгсэл." />

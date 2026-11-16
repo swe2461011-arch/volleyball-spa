@@ -18,9 +18,11 @@ export function renderSearchSidebar() {
             <select id="categoryFilter">
               <option value="all">${t("search.allCategories")}</option>
               <option value="ball">${t("categories.ball")}</option>
-              <option value="clothing">${t("categories.clothing")}</option>
               <option value="shoes">${t("categories.shoes")}</option>
+              <option value="clothing">${t("categories.clothing")}</option>
               <option value="protection">${t("categories.protection")}</option>
+              <option value="bags">${t("categories.bags")}</option>
+              <option value="equipment">${t("categories.equipment")}</option>
             </select>
           </div>
         </div>
@@ -40,6 +42,25 @@ export function renderSearchSidebar() {
         </div>
       </div>
       <div class="field">
+        <label class="label is-small">${t("search.brand")}</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select id="brandFilter">
+              <option value="all">${t("search.allBrands")}</option>
+              <option value="Asics">Asics</option>
+              <option value="Mizuno">Mizuno</option>
+              <option value="Rigorer">Rigorer</option>
+              <option value="Mikasa">Mikasa</option>
+              <option value="Zamst">Zamst</option>
+              <option value="Li Ning">Li Ning</option>
+              <option value="361°">361°</option>
+              <option value="Atan">Atan</option>
+              <option value="Volleyball Store">Volleyball Store</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
         <label class="label is-small">${t("search.size")}</label>
         <div class="control">
           <div class="select is-fullwidth">
@@ -52,18 +73,20 @@ export function renderSearchSidebar() {
               <option value="M">M</option>
               <option value="L">L</option>
               <option value="XL">XL</option>
-              <option value="XXL">XXL</option>
-              <option value="S-XL">S-XL</option>
-              <option value="XS-L">XS-L</option>
-              <option value="XS-M">XS-M</option>
-              <option value="S-L">S-L</option>
-              <option value="M-XL">M-XL</option>
-              <option value="28-35">28-35</option>
-              <option value="35-40">35-40</option>
-              <option value="36-40">36-40</option>
-              <option value="38-42">38-42</option>
-              <option value="39-45">39-45</option>
-              <option value="40-46">40-46</option>
+              <option value="32">32</option>
+              <option value="33">33</option>
+              <option value="34">34</option>
+              <option value="35">35</option>
+              <option value="36">36</option>
+              <option value="37">37</option>
+              <option value="38">38</option>
+              <option value="39">39</option>
+              <option value="40">40</option>
+              <option value="41">41</option>
+              <option value="42">42</option>
+              <option value="43">43</option>
+              <option value="44">44</option>
+              <option value="One size">One size</option>
             </select>
           </div>
         </div>
@@ -82,7 +105,6 @@ export function renderSearchSidebar() {
               <option value="yellow">${t("colors.yellow")}</option>
               <option value="green">${t("colors.green")}</option>
               <option value="gray">${t("colors.gray")}</option>
-              <option value="multicolor">${t("colors.multicolor")}</option>
             </select>
           </div>
         </div>

@@ -11,6 +11,7 @@ export function bindProductSearchEvents(allProducts) {
   const levelSelect = document.getElementById("levelFilter");
   const sizeSelect = document.getElementById("sizeFilter");
   const colorSelect = document.getElementById("colorFilter");
+  const brandSelect = document.getElementById("brandFilter");
   const inStockCheckbox = document.getElementById("inStockOnly");
   const resultsEl = document.getElementById("productResults");
   const countEl = document.getElementById("resultCount");
@@ -23,6 +24,7 @@ export function bindProductSearchEvents(allProducts) {
       level: levelSelect?.value ?? "all",
       size: sizeSelect?.value ?? "all",
       color: colorSelect?.value ?? "all",
+      brand: brandSelect?.value ?? "all",
       inStockOnly: Boolean(inStockCheckbox?.checked),
     });
 
@@ -41,12 +43,14 @@ export function bindProductSearchEvents(allProducts) {
       runFilter();
     }
   });
-  categorySelect?.addEventListener("change", runFilter);
-  genderSelect?.addEventListener("change", runFilter);
-  levelSelect?.addEventListener("change", runFilter);
-  sizeSelect?.addEventListener("change", runFilter);
-  colorSelect?.addEventListener("change", runFilter);
-  inStockCheckbox?.addEventListener("change", runFilter);
+  input?.addEventListener("input", () => {
+    // live search debounce-ish
+    clearTimeout(window.__vsSearchT);
+    window.__vsSearchT = setTimeout(runFilter, 200);
+  });
+  [categorySelect, genderSelect, levelSelect, sizeSelect, colorSelect, brandSelect, inStockCheckbox].forEach(
+    (el) => el?.addEventListener("change", runFilter),
+  );
 
   document.querySelectorAll(".category-item").forEach((item) => {
     item.addEventListener("click", (e) => {

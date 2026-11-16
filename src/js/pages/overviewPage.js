@@ -1,71 +1,131 @@
 import { t } from "../i18n/i18n.js";
 import { renderPageLayout } from "../layouts/pageLayout.js";
+import { getProducts } from "../services/productService.js";
+import { formatPrice } from "../fn/format.js";
+import { getProductImage } from "../services/imageService.js";
 
-const brands = [
-  { key: "ready", label: "Бэлэн бараа", labelEn: "Ready stock", img: "./img/products/brand-ready.jpg", href: "#/search", cat: "all" },
-  { key: "mizuno", label: "MIZUNO", labelEn: "MIZUNO", img: "./img/products/brand-mizuno.jpg", href: "#/search", brand: "Mizuno" },
-  { key: "asics", label: "ASICS", labelEn: "ASICS", img: "./img/products/brand-asics.jpg", href: "#/search", brand: "Asics" },
-  { key: "rigorer", label: "RIGORER", labelEn: "RIGORER", img: "./img/products/brand-rigorer.jpg", href: "#/search", brand: "Nike" },
-  { key: "zamst", label: "ZAMST", labelEn: "ZAMST", img: "./img/products/brand-zamst.jpg", href: "#/search", cat: "protection" },
+const CATEGORIES = [
+  { key: "shoes", icon: "fa-shoe-prints" },
+  { key: "clothing", icon: "fa-shirt" },
+  { key: "protection", icon: "fa-shield-halved" },
+  { key: "ball", icon: "fa-volleyball" },
+  { key: "bags", icon: "fa-bag-shopping" },
 ];
 
-const features = [
-  { href: "#/search", icon: "fa-bag-shopping", key: "products" },
-  { href: "#/budget", icon: "fa-calculator", key: "budget" },
-  { href: "#/guides", icon: "fa-book-open", key: "guides" },
+const BRANDS = ["Asics", "Mizuno", "Rigorer", "Mikasa", "Zamst"];
+
+const FEATURED_KEYWORDS = [
+  "sky elite",
+  "lightning select",
+  "metarise",
+  "momentum elite",
+  "mikasa",
+  "rigorer bp",
 ];
 
-export function renderOverviewPage() {
+export async function renderOverviewPage() {
   const app = document.getElementById("app");
-  const lang = localStorage.getItem("language") || "mn";
-
-  const content = `
-    <div class="home-hero-clean">
-      <h2 class="title is-3 has-text-centered">${t("overview.welcome")}</h2>
-      <p class="subtitle is-5 has-text-centered has-text-grey">${t("overview.description")}</p>
-      <p class="has-text-centered is-size-6 has-text-grey-light mb-5">${t("overview.heroHint")}</p>
-      <div class="has-text-centered">
-        <a href="#/search" class="button is-dark is-medium">
-          <span class="icon"><i class="fas fa-search"></i></span>
-          <span>${t("nav.search")}</span>
-        </a>
-      </div>
-    </div>
-
-    <h3 class="title is-5 mt-6 mb-4">${t("overview.brandsTitle")}</h3>
-    <div class="brand-grid">
-      ${brands
-        .map(
-          (b) => `
-        <a class="brand-tile" href="${b.href}" data-brand="${b.brand || ""}" data-cat="${b.cat || ""}">
-          <div class="brand-tile-img">
-            <img src="${b.img}" alt="${b.label}" loading="lazy" onerror="this.src='./img/products/placeholder.png'" />
-          </div>
-          <p class="brand-tile-label">${lang === "en" ? b.labelEn : b.label}</p>
-        </a>`,
-        )
-        .join("")}
-    </div>
-
-    <div class="columns mt-6">
-      ${features
-        .map(
-          (f) => `
-        <div class="column is-4">
-          <a class="box app-feature-clean" href="${f.href}">
-            <span class="icon is-large has-text-dark"><i class="fas ${f.icon} fa-2x"></i></span>
-            <h3 class="title is-5 mt-3">${t(`overview.features.${f.key}.title`)}</h3>
-            <p class="has-text-grey">${t(`overview.features.${f.key}.text`)}</p>
-          </a>
-        </div>`,
-        )
-        .join("")}
-    </div>
-  `;
 
   app.innerHTML = renderPageLayout({
     title: "",
-    content: content,
-    titleClass: "",
+    content: `<div class="home-v"><p class="has-text-grey has-text-centered py-5">${t("search.loading")}</p></div>`,
   });
+
+  let featured = [];
+  try {
+    const products = await getProducts();
+    const used = new Set();
+    for (const kw of FEATURED_KEYWORDS) {
+      const hit = products.find(
+        (p) =>
+          !used.has(p.id) &&
+          (p.name?.mn || "").toLowerCase().includes(kw) &&
+          String(p.image || "").startsWith("http"),
+      );
+      if (hit) {
+        used.add(hit.id);
+        featured.push(hit);
+      }
+    }
+    if (featured.length < 4) {
+      for (const p of products) {
+        if (featured.length >= 6) break;
+        if (used.has(p.id)) continue;
+        if (String(p.image || "").startsWith("http") && p.category === "shoes") {
+          used.add(p.id);
+          featured.push(p);
+        }
+      }
+    }
+    featured = featured.slice(0, 6);
+  } catch (e) {
+    console.error(e);
+  }
+
+  const content = `
+    <div class="home-v">
+      <header class="home-v-head">
+        <h1 class="home-v-title">${t("nav.brand")}</h1>
+        <p class="home-v-desc">${t("overview.description")}</p>
+        <div class="home-v-actions">
+          <a class="home-v-cta" href="#/search">${t("nav.search")}</a>
+          <a class="home-v-cta home-v-cta--ghost" href="#/budget">${t("nav.budget")}</a>
+        </div>
+      </header>
+
+      <div class="home-v-brands">
+        ${BRANDS.map((b) => `<span class="home-v-brand">${b}</span>`).join("")}
+      </div>
+
+      ${
+        featured.length
+          ? `
+      <section class="home-v-section">
+        <div class="home-v-section-row">
+          <h2>${t("overview.featuredTitle")}</h2>
+          <a href="#/search">${t("overview.seeAll")}</a>
+        </div>
+        <div class="home-v-grid">
+          ${featured
+            .map(
+              (p) => `
+            <a class="home-v-card" href="#/search">
+              <div class="home-v-card-img">
+                <img src="${getProductImage(p)}" alt="" loading="lazy" />
+              </div>
+              <div class="home-v-card-body">
+                <span class="home-v-card-brand">${p.brand || ""}</span>
+                <span class="home-v-card-name">${(p.name && (p.name.mn || p.name.en)) || ""}</span>
+                <span class="home-v-card-price">${formatPrice(p.price)}</span>
+              </div>
+            </a>`,
+            )
+            .join("")}
+        </div>
+      </section>`
+          : ""
+      }
+
+      <section class="home-v-section">
+        <h2 class="home-v-section-title">${t("overview.categoriesTitle")}</h2>
+        <div class="home-v-cats">
+          ${CATEGORIES.map(
+            (c) => `
+            <a class="home-v-cat" href="#/search">
+              <span class="home-v-cat-icon"><i class="fas ${c.icon}"></i></span>
+              <span>${t("categories." + c.key)}</span>
+            </a>`,
+          ).join("")}
+        </div>
+      </section>
+
+      <nav class="home-v-footnav">
+        <a href="#/guides">${t("nav.guides")}</a>
+        <span>·</span>
+        <a href="#/contact">${t("nav.contact")}</a>
+      </nav>
+    </div>
+  `;
+
+  app.innerHTML = renderPageLayout({ title: "", content });
 }

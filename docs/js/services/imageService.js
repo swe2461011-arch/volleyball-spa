@@ -1,4 +1,5 @@
 export function getProductImage(product) {
-  if (product?.image) return product.image;
-  return "./img/products/placeholder.png";
+  const img = product?.image || "";
+  if (!img) return "./img/products/placeholder.png";
+  return img;
 }

@@ -14,7 +14,11 @@ export function initRouter(routes) {
   }
 
   // Хуудас анх ачаалагдахад renderRoute() ажиллана
-  window.addEventListener("load", renderRoute);
+  if (document.readyState === "complete") {
+    renderRoute();
+  } else {
+    window.addEventListener("load", renderRoute);
+  }
 
   // URL-ийн # хэсэг өөрчлөгдөх бүрд renderRoute() дахин ажиллана
   window.addEventListener("hashchange", renderRoute);

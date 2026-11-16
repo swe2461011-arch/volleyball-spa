@@ -1,7 +1,7 @@
 {
   "name": "volleyball-spa",
-  "version": "2.9.2",
-  "description": "VolleyShop - volleyball gear intro catalog",
+  "version": "3.0.0",
+  "description": "VolleyShop - complete volleyball gear catalog SPA",
   "scripts": {
     "test": "echo \"No tests configured\"",
     "sass": "sass --watch src/scss/main.scss src/css/main.css",

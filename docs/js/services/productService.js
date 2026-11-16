@@ -20,6 +20,7 @@ export function filterProducts(
     level = "all",
     size = "all",
     color = "all",
+    brand = "all",
     inStockOnly = false,
   } = {},
 ) {
@@ -28,13 +29,25 @@ export function filterProducts(
     if (category !== "all" && product.category !== category) return false;
     if (gender !== "all" && product.gender !== gender) return false;
     if (level !== "all" && product.level !== level) return false;
-    if (size !== "all" && String(product.size) !== String(size)) return false;
+    if (size !== "all") {
+      const sizes = Array.isArray(product.sizes)
+        ? product.sizes.map(String)
+        : String(product.size || "").split("/").map((s) => s.trim()).filter(Boolean);
+      if (sizes.length ? !sizes.includes(String(size)) : String(product.size) !== String(size)) return false;
+    }
     if (color !== "all" && product.color !== color) return false;
+    if (brand !== "all" && product.brand !== brand) return false;
     if (inStockOnly && !product.inStock) return false;
     if (!q) return true;
     const nameEn = product.name?.en?.toLowerCase() ?? "";
     const nameMn = product.name?.mn?.toLowerCase() ?? "";
-    const brand = product.brand?.toLowerCase() ?? "";
-    return nameEn.includes(q) || nameMn.includes(q) || brand.includes(q);
+    const brandName = product.brand?.toLowerCase() ?? "";
+    const subtype = product.subtype?.toLowerCase() ?? "";
+    return (
+      nameEn.includes(q) ||
+      nameMn.includes(q) ||
+      brandName.includes(q) ||
+      subtype.includes(q)
+    );
   });
 }
