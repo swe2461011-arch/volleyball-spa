@@ -1,58 +1,88 @@
-
 @use "sass:color";
 
 // Өнгөний хувьсагч
-$primaryColor: #2bac73;
-$primaryColorDark: color.scale($primaryColor, $lightness: -15%);
-
-$secondaryColor: #ff914d;
-$secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
+$primaryColor: #1f9d6a;
+$primaryColorDark: color.scale($primaryColor, $lightness: -12%);
+$secondaryColor: #ff8a3d;
+$secondaryColorDark: color.scale($secondaryColor, $lightness: -12%);
+$volleyYellow: #ffb300;
+$volleyRed: #e53935;
+$navy: #0b2c4d;
 
 // Bulma санг импортлох
 @import "../../node_modules/bulma/bulma";
 
-// Үндсэн өнгө
 :root {
   --bulma-primary-h: 151deg;
   --bulma-primary-s: 65%;
-  --bulma-primary-l: 42%;
+  --bulma-primary-l: 38%;
+  --vs-primary: #{$primaryColor};
+  --vs-primary-dark: #{$primaryColorDark};
+  --vs-secondary: #{$secondaryColor};
+  --vs-navy: #{$navy};
+  --vs-sky: #e8f4ff;
+  --vs-card: #ffffff;
+  --vs-muted: #64748b;
+  --vs-border: #e2e8f0;
+  --vs-radius: 16px;
+  --vs-shadow: 0 8px 30px rgba(11, 44, 77, 0.08);
+  --vs-shadow-hover: 0 16px 40px rgba(11, 44, 77, 0.14);
 }
 
-// Үндсэн товчны загвар
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #d9f0e6 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, #dceaff 0%, transparent 50%),
+    #f4f7fb;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
 .button.is-primary {
   background-color: $primaryColor;
   border-color: $primaryColor;
   color: white;
+  border-radius: 12px;
+  font-weight: 600;
   transition: all 0.2s ease;
+  &:hover {
+    background-color: $primaryColorDark;
+    border-color: $primaryColorDark;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(31, 157, 106, 0.3);
+  }
 }
 
-.button.is-primary:hover {
-  background-color: $primaryColorDark;
-  border-color: $primaryColorDark;
-  color: white;
-}
-
-// Хоёрдогч товчны загвар
 .button.is-secondary {
   background-color: $secondaryColor;
   border-color: $secondaryColor;
   color: white;
+  border-radius: 12px;
   transition: all 0.2s ease;
+  &:hover {
+    background-color: $secondaryColorDark;
+    border-color: $secondaryColorDark;
+    color: white;
+  }
 }
 
-.button.is-secondary:hover {
-  background-color: $secondaryColorDark;
-  border-color: $secondaryColorDark;
-  color: white;
+.button {
+  border-radius: 12px;
+  font-weight: 600;
 }
 
-// Дээд навигацийн цэс
 .navbar-brand a {
   p {
     color: $primaryColor;
     font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
-
   span {
     color: $secondaryColor;
   }
@@ -62,39 +92,37 @@ $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
   color: $secondaryColor;
 }
 
-// Дээд цэсийг дэлгэцийн дээд хэсэгт тогтоох
 .app-sticky {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #f5f5f5;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-// Цэсний сүүдэр
 .app-shadow {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.04);
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, $primaryColor, $volleyYellow, $secondaryColor) 1;
 }
 
-// Логоны хэмжээ
 .navbar-brand .image img {
   max-width: 64px;
   height: auto;
 }
 
-// Цэсний зураг болон текстийн байрлал
 .navbar-item {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-// Цэсийг баруун тал руу зэрэгцүүлэх
 .app-top-navbar-right {
   flex-grow: 1;
   justify-content: flex-end;
 }
 
-// Лого дээр дарах болон хулгана аваачих үеийн загвар
 .navbar-brand .app-logo:hover,
 .navbar-brand .app-logo:focus,
 .navbar-brand .app-logo:active {
@@ -103,147 +131,268 @@ $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
   box-shadow: none;
 }
 
-// ===== Загварыг сайжруулсан хэсэг (өнгөлөг) =====
-$volleyYellow: #ffb300;
-$volleyRed: #e53935;
-
-body {
-  background: #eef4fb;
-}
-
-// Navbar: доор нь өнгөт зураас
-.app-shadow {
-  border-bottom: 4px solid $volleyYellow;
-}
-
-// Хуудасны гарчиг: доор нь өнгөт зураас
-.txt-h {
-  margin-bottom: 2rem;
-  color: #0d3b66;
-
-  &::after {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 5px;
-    margin: 0.6rem auto 0;
-    border-radius: 3px;
-    background: linear-gradient(90deg, $primaryColor, $volleyYellow, $volleyRed);
+.navbar-menu .navbar-item {
+  border-radius: 999px;
+  margin: 0 2px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+  &:hover {
+    background: #eef7f2;
+    color: $primaryColor;
+  }
+  &.is-active {
+    color: $primaryColor !important;
+    background: #e6f6ef !important;
+    font-weight: 600;
   }
 }
 
-// Хайрцаг: зүүн талд өнгөт зураастай
+.txt-h {
+  margin-bottom: 1.75rem;
+  color: $navy;
+  letter-spacing: -0.03em;
+  &::after {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 4px;
+    margin: 0.6rem auto 0;
+    border-radius: 4px;
+    background: linear-gradient(90deg, $primaryColor, $volleyYellow, $secondaryColor);
+  }
+}
+
 .box {
-  border-radius: 14px;
-  border-left: 6px solid $primaryColor;
-  box-shadow: 0 4px 14px rgba(30, 60, 120, 0.1);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid $primaryColor;
+  box-shadow: 0 8px 30px rgba(11, 44, 77, 0.08);
+  background: #fff;
 }
 
-.button {
-  border-radius: 999px;
-}
-
-// Нүүр хуудасны том баннер
 .app-hero {
-  padding: 3rem 1.5rem;
+  padding: 3.25rem 1.75rem;
   text-align: center;
   color: #fff;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #0d47a1, $primaryColor 50%, $volleyYellow);
-  box-shadow: 0 10px 30px rgba(13, 71, 161, 0.3);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(11, 44, 77, 0.92) 0%, rgba(31, 157, 106, 0.88) 48%, rgba(255, 179, 0, 0.9) 100%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 40%);
+  box-shadow: 0 20px 50px rgba(11, 44, 77, 0.25);
+  position: relative;
+  overflow: hidden;
 
   .title,
   .subtitle {
     color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
-
-  // Bulma-ийн .title + .subtitle сөрөг зайг арилгаж, хоёрыг салгана
   .title + .subtitle {
     margin-top: 0.75rem;
   }
-
   .button {
-    color: #0d47a1;
+    background: #fff;
+    color: $navy;
     font-weight: 700;
+    border: none;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    &:hover {
+      background: #f8fafc;
+      color: $primaryColor;
+      transform: translateY(-1px);
+    }
   }
 }
 
-// Нүүр хуудасны 3 карт: тус бүр өөр өнгөтэй
 .app-feature {
   display: block;
   height: 100%;
   text-align: center;
   border-left: 0;
-  border-top: 6px solid $primaryColor;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-
+  border-top: 5px solid $primaryColor;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  border-top-width: 5px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(11, 44, 77, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(30, 60, 120, 0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(11, 44, 77, 0.14);
   }
 }
 
-.app-feature-primary {
-  border-top-color: $primaryColor;
+.app-feature-icon {
+  color: $primaryColor;
 }
 
-.app-feature-warning {
-  border-top-color: $volleyYellow;
-}
-
-.app-feature-danger {
-  border-top-color: $volleyRed;
-}
-
-// Navbar: лого дүрс, идэвхтэй цэс
 .app-logo-icon {
   color: $volleyYellow;
 }
 
-.navbar-menu .navbar-item.is-active {
-  color: $primaryColor;
-  background: #e3f0fd;
+// Search layout
+.app-shell {
+  display: flex;
+  gap: 1.75rem;
+  align-items: flex-start;
+  min-height: 60vh;
 }
-// Бүтээгдэхүүний карт
+.app-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  .box {
+    border-left-width: 4px;
+    padding: 1.15rem 1.2rem;
+  }
+  .label {
+    color: $navy;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .input,
+  .select select {
+    border-radius: 10px;
+    border-color: #e2e8f0;
+    box-shadow: none;
+    &:focus {
+      border-color: $primaryColor;
+      box-shadow: 0 0 0 3px rgba(31, 157, 106, 0.18);
+    }
+  }
+  .button.is-primary {
+    border-radius: 12px;
+  }
+}
+.app-main {
+  flex: 1;
+  min-width: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .app-shell {
+    display: block;
+  }
+  .app-sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: 1.25rem;
+  }
+  .app-hero {
+    padding: 2.25rem 1.25rem;
+    border-radius: 18px;
+  }
+}
+
 .product-card {
   height: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  border-top: 4px solid $primaryColor;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  border-top-width: 4px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(11, 44, 77, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(11, 44, 77, 0.14);
+    .product-image-wrap img {
+      transform: scale(1.04);
+    }
+  }
+  .title {
+    color: $navy;
+    font-weight: 650;
+    line-height: 1.3;
+    margin-bottom: 0.15rem;
+  }
+  .subtitle {
+    color: #64748b;
+    margin-bottom: 0.4rem;
+  }
+  .tags {
+    margin-top: auto;
+  }
+  .has-text-primary {
+    color: $primaryColor !important;
   }
 }
 
-// Ангиллын цэс
-.menu-list {
-  .category-item {
-    border-radius: 6px;
-    margin-bottom: 4px;
-    transition: background-color 0.15s ease;
-
+.product-image-wrap {
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #f0f7f4 0%, #e8eef5 100%);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.35s ease, opacity 0.2s ease;
     &:hover {
-      background-color: #f0f0f0;
-    }
-
-    &.is-active {
-      background-color: $primaryColor;
-      color: white;
-      font-weight: 600;
+      opacity: 0.95;
     }
   }
 }
 
-// Хайлтын sidebar box-ууд
-.box {
-  h3.title {
-    margin-bottom: 0.75rem;
+.product-desc {
+  min-height: 2.4em;
+  color: #64748b;
+  line-height: 1.45;
+  flex-grow: 1;
+}
+
+.menu-list a.category-item {
+  border-radius: 10px;
+  margin-bottom: 4px;
+  padding: 0.55rem 0.85rem;
+  transition: all 0.15s ease;
+  &:hover {
+    background: #eef7f2;
+    color: $primaryColor;
+  }
+  &.is-active {
+    background: $primaryColor;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(31, 157, 106, 0.35);
   }
 }
-@import "components/buttons";
-@import "components/navbar";
-@import "layouts/sidebarPageLayout";
-@import "components/sidebarMenuList";
-@import "layouts/pageTableContentsLayout";
+
+.tag {
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+#resultCount {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+}
+
+#imageModal .modal-content {
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.notification {
+  border-radius: 12px;
+}
+
+.section {
+  padding-top: 1.75rem;
+  padding-bottom: 2.5rem;
+}
+
+.button.is-link.is-light {
+  background: #e8f4ff;
+  color: #1d4ed8;
+}
